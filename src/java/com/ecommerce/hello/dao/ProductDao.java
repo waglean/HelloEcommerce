@@ -4,11 +4,11 @@ import com.ecommerce.hello.model.ProductModel;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+//import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
 
 /**
  *
@@ -34,7 +34,7 @@ public class ProductDao {
             System.out.println(e);
         }
 
-        String sql = "insert into product( product_name )values('" + cm.getProduct_name() + "')";
+        String sql = "insert into product( product_id, product_name, product_price )values("+cm.getProduct_id()+",'" + cm.getProduct_name() + "',"+cm.getProduct_price()+")";
         try {
             st = con.createStatement();
             st.execute(sql);
@@ -66,7 +66,7 @@ public class ProductDao {
             st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                al.add(new ProductModel(rs.getString("product_name")));
+                al.add(new ProductModel(rs.getInt("product_id"),rs.getString("product_name"),rs.getInt("product_price")));
             }
         } catch (Exception e) {
             System.out.println(e);

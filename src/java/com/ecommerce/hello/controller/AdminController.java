@@ -30,6 +30,7 @@ public class AdminController extends HttpServlet {
         }
         
         else if(request.getRequestURI().equals(contextPath+"/admin/product")){//two url
+            
             request.setAttribute("productvalues", ProductDao.select());
             
             RequestDispatcher rd = request.getRequestDispatcher("/admin-product.jsp");//if there is two url then add slash

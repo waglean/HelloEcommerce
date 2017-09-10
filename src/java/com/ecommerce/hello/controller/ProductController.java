@@ -33,8 +33,9 @@ public class ProductController extends HttpServlet {
             throws ServletException, IOException {
        String contextPath=request.getContextPath();
        if(request.getRequestURI().equals(contextPath+"/admin/product/add")){
+           
            String name=request.getParameter("product_name");
-          // int price=Integer.parseInt(request.getParameter("product_price")); 
+           int price=Integer.parseInt(request.getParameter("product_price")); 
            //int discount=Integer.parseInt(request.getParameter("pdiscount"));
            //String tags=request.getParameter("product_tag");
            //file upload garna baki xa
@@ -42,7 +43,7 @@ public class ProductController extends HttpServlet {
            ProductModel pm = new ProductModel();
            pm.setProduct_name(name);
            //pm.setDiscount(discount);
-          // pm.setProduct_price(price);
+           pm.setProduct_price(price);
          //  pm.setProduct_tag(tags);
            //send the object to dao
           ProductDao.insert(pm);

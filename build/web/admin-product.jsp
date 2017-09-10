@@ -54,18 +54,18 @@
 
                             <div class="form-group">
                                 <label>Product Tag</label>
-                                <select  itemtype="" name= "product_tag" class="form-control select2" multiple="Product" data-placeholder="Select the product" style="width: 100%;">
+                                <select  name= "product_tag" class="form-control select2" multiple="multiple" data-placeholder="Select the product" style="width: 100%;">
                                     <option>Fashion</option>
                                     <option>Sports</option>
                                     <option>Computer and IT</option>
                                     <option>Food</option>
                                 </select>
                             </div>
-                            <div class="checkbox">
+<!--                            <div class="checkbox">
                                 <label>
                                     <input type="checkbox"> Check me out
                                 </label>
-                            </div>
+                            </div>-->
                         </div>
                         <!-- /.box-body -->
 
@@ -89,7 +89,9 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
+                        <th>Product ID</th>
                         <th>Product Name</th>
+                        <th>Product Price</th>
 
                     </tr>
                 </thead>
@@ -97,7 +99,9 @@
 
                     <c:forEach items="${productvalues}" var="product">
                         <tr>
+                            <td>${product.product_id}</td>
                             <td>${product.product_name}</td>
+                            <td>${product.product_price}</td>
                         </tr>
                     </c:forEach>
                 </tbody>
