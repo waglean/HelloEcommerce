@@ -13,7 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World! by html</h1>
+        <h1>Hello World! by HTML</h1>
         <h1> <% out.println("Hello world by scriplet, not good practice though."); %> </h1>
         <h1> ${el} </h1> <!-- expression language  -->
         <h1><c:out value="learning jstl by way of printing"/></h1><!-- jstl -->

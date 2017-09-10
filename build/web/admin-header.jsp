@@ -6,8 +6,9 @@
 
 <!DOCTYPE html>
 <html>
- ${pageContext.request.contextPath}/${pageContext.request.contextPath}/ <!-- /ecommerce/${pageContext.request.contextPath}/ -->
-<head>
+ <head>
+
+<!-- ${pageContext.request.contextPath}/${pageContext.request.contextPath}/  /ecommerce/${pageContext.request.contextPath}/ -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Admin Dashboard</title>
