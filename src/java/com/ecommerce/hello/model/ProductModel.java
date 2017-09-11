@@ -13,20 +13,20 @@ public class ProductModel implements Serializable {
     private int product_id;
     private String product_name;
    // private String product_rating;
-   // private String product_tag;
+    private String product_tag;
    // private int product_price;
    // private String product_image;
-    //private int product_id;
     private int product_price;
 
     public ProductModel() {
         
     }
 
-    public ProductModel(int product_id, String product_name, int product_price) {
+    public ProductModel(int product_id, String product_name, int product_price, String product_tag) {
         this.product_id= product_id;
         this.product_name = product_name;
         this.product_price = product_price;
+        this.product_tag=product_tag;
     }
 
    
@@ -58,14 +58,14 @@ public class ProductModel implements Serializable {
 //    public void setProduct_rating(String product_rating) {
 //        this.product_rating = product_rating;
 //    }
-//
-//    public String getProduct_tag() {
-//        return product_tag;
-//    }
-//
-//    public void setProduct_tag(String product_tag) {
-//        this.product_tag = product_tag;
-//    }
+
+    public String getProduct_tag() {
+        return product_tag;
+    }
+
+    public void setProduct_tag(String product_tag) {
+        this.product_tag = product_tag;
+    }
 //
     public int getProduct_price() {
         return product_price;
@@ -82,6 +82,10 @@ public class ProductModel implements Serializable {
 //    public void setProduct_image(String product_image) {
 //        this.product_image = product_image;
 //    }
+
+    public void setProduct_tag(String[] tag) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }

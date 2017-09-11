@@ -34,7 +34,7 @@ public class ProductDao {
             System.out.println(e);
         }
 
-        String sql = "insert into product( product_id, product_name, product_price )values("+cm.getProduct_id()+",'" + cm.getProduct_name() + "',"+cm.getProduct_price()+")";
+        String sql = "insert into product( product_id, product_name, product_price, product_tag )values("+cm.getProduct_id()+",'" + cm.getProduct_name() + "',"+cm.getProduct_price()+",'"+cm.getProduct_tag()+"')";
         try {
             st = con.createStatement();
             st.execute(sql);
@@ -66,7 +66,7 @@ public class ProductDao {
             st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                al.add(new ProductModel(rs.getInt("product_id"),rs.getString("product_name"),rs.getInt("product_price")));
+                al.add(new ProductModel(rs.getInt("product_id"),rs.getString("product_name"),rs.getInt("product_price"),rs.getString("product_tag")));
             }
         } catch (Exception e) {
             System.out.println(e);

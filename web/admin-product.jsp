@@ -36,7 +36,7 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">ITEM</h3>
+                        <h3 class="box-title">ITEMS</h3>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
@@ -53,18 +53,25 @@
                             </div>    
 
                             <div class="form-group">
-                                <label>Product Tag</label>
-                                <select  name= "product_tag" class="form-control select2" multiple="multiple" data-placeholder="Select the product" style="width: 100%;">
-                                    <option>Fashion</option>
-                                    <option>Sports</option>
-                                    <option>Computer and IT</option>
-                                    <option>Food</option>
-                                </select>
-                            </div>
-<!--                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox"> Check me out
-                                </label>
+                <label>Product Tags</label>
+                <select name="product_tag" class="form-control select2" multiple="multiple" data-placeholder="Type a new tag" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                  <option>Food</option>
+                  <option>LifeStyle</option>
+                  <option>Sports</option>
+                  <option>Electronics</option>
+                  <option>Health</option>
+                  <option>Accessories</option>
+                  <option>Computer and IT gadgets</option>
+                </select>
+                  </div>
+
+
+
+
+                            <!--  <div class="checkbox">
+                            <label>
+                            <input type="checkbox"> Check me out
+                            </label>
                             </div>-->
                         </div>
                         <!-- /.box-body -->
@@ -92,6 +99,7 @@
                         <th>Product ID</th>
                         <th>Product Name</th>
                         <th>Product Price</th>
+                        <th>Product Tag</th>
 
                     </tr>
                 </thead>
@@ -102,6 +110,7 @@
                             <td>${product.product_id}</td>
                             <td>${product.product_name}</td>
                             <td>${product.product_price}</td>
+                            <td>${product.product_tag}</td>
                         </tr>
                     </c:forEach>
                 </tbody>
