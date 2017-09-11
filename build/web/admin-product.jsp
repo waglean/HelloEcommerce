@@ -53,21 +53,21 @@
                             </div>    
 
                             <div class="form-group">
-                <label>Product Tags</label>
-                <select name="product_tag" class="form-control select2" multiple="multiple" data-placeholder="Type a new tag" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                  <option>Food</option>
-                  <option>LifeStyle</option>
-                  <option>Sports</option>
-                  <option>Electronics</option>
-                  <option>Health</option>
-                  <option>Accessories</option>
-                  <option>Computer and IT gadgets</option>
-                </select>
-                  </div>
-
-
-
-
+                                <label>Product Tags</label>
+                                <select name="product_tag" class="form-control select2" multiple="multiple" data-placeholder="Type a new tag" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                    <option>Food</option>
+                                    <option>LifeStyle</option>
+                                    <option>Sports</option>
+                                    <option>Electronics</option>
+                                    <option>Health</option>
+                                    <option>Accessories</option>
+                                    <option>Computer and IT gadgets</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label> Product Discount</label>
+                                <input type="text" name="product_discount" class="form-control" id="exampleInputEmail1" placeholder="Enter Product Discount">
+                            </div> 
                             <!--  <div class="checkbox">
                             <label>
                             <input type="checkbox"> Check me out
@@ -100,7 +100,7 @@
                         <th>Product Name</th>
                         <th>Product Price</th>
                         <th>Product Tag</th>
-
+                        <th>Product Discount</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -111,6 +111,8 @@
                             <td>${product.product_name}</td>
                             <td>${product.product_price}</td>
                             <td>${product.product_tag}</td>
+                            <td>${product.product_discount}</td>
+
                         </tr>
                     </c:forEach>
                 </tbody>

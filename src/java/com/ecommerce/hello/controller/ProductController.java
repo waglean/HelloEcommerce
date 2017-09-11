@@ -37,7 +37,7 @@ public class ProductController extends HttpServlet {
            
            String name=request.getParameter("product_name");
            int price=Integer.parseInt(request.getParameter("product_price")); 
-           //int discount=Integer.parseInt(request.getParameter("pdiscount"));
+           String discount=request.getParameter("product_discount");
            //String tag=request.getParameter("product_tag");
 //           
            String[] tempTag=request.getParameterValues("product_tag");
@@ -48,7 +48,7 @@ public class ProductController extends HttpServlet {
            //encapsulate the data
            ProductModel pm = new ProductModel();
            pm.setProduct_name(name);
-           //pm.setDiscount(discount);
+           pm.setProduct_discount(discount);
            pm.setProduct_price(price);
            pm.setProduct_tag(tag);
            //send the object to dao
