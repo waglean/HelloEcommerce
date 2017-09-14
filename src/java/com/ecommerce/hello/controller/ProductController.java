@@ -10,6 +10,7 @@ import com.ecommerce.hello.model.ProductModel;
 import com.ecommerce.hello.utilities.Tag;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,41 +21,66 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ananda
  */
-@WebServlet({"/admin/product/add"})
+@WebServlet({"/admin/product/add", "/admin/product/delete/", "/admin/product/edit/"})
 public class ProductController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-    }
+        String contextPath = request.getContextPath();
+        if (request.getRequestURI().equals(contextPath + "/admin/product/delete/")) {
+            int id = Integer.parseInt(request.getParameter("product_id"));
+            ProductDao.delete(id);
+            response.sendRedirect(contextPath + "/admin/product");
+        }
+        else if (request.getRequestURI().equals(contextPath + "/admin/product/edit/")){
+                    int product_id =Integer.parseInt(request.getParameter("product_id"));
+                    request.setAttribute("editproductval",ProductDao.selectById(product_id));
+                    //response.sendRedirect(contextPath+"/admin/product");
+                    RequestDispatcher rd= request.getRequestDispatcher("/admin-product.jsp");
+                    rd.forward(request,response);
+                    }
+        }
+    
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       String contextPath=request.getContextPath();
-       if(request.getRequestURI().equals(contextPath+"/admin/product/add")){
-           
-           String name=request.getParameter("product_name");
-           int price=Integer.parseInt(request.getParameter("product_price")); 
-           String discount=request.getParameter("product_discount");
-           //String tag=request.getParameter("product_tag");
-//           
-           String[] tempTag=request.getParameterValues("product_tag");
-           String tag=Tag.convertTag(tempTag);
-           
-           
-           //file upload garna baki xa
-           //encapsulate the data
-           ProductModel pm = new ProductModel();
-           pm.setProduct_name(name);
-           pm.setProduct_discount(discount);
-           pm.setProduct_price(price);
-           pm.setProduct_tag(tag);
-           //send the object to dao
-          ProductDao.insert(pm);
-          response.sendRedirect(contextPath+"/admin/product");
-       }
+        String contextPath = request.getContextPath();
+        if (request.getRequestURI().equals(contextPath + "/admin/product/add")) {
+//          int id=Integer.parseInt(request.getParameter("product_id"));
+            String name = request.getParameter("product_name");
+            int price = Integer.parseInt(request.getParameter("product_price"));
+            String discount = request.getParameter("product_discount");
+            String image = request.getParameter("product_image");
+
+            String[] tempTag = request.getParameterValues("product_tag");
+            String tag = Tag.convertTag(tempTag);
+
+            //file upload garna baki xa
+            //encapsulate the data
+            ProductModel pm = new ProductModel();
+           //m.setProduct_id(id);
+            pm.setProduct_name(name);
+            pm.setProduct_discount(discount);
+            pm.setProduct_price(price);
+            pm.setProduct_tag(tag);
+            pm.setProduct_image(image);
+            int id=0;
+            try{
+                id=Integer.parseInt(request.getParameter("product_id"));
+                pm.setProduct_id(id);
+            }catch(Exception e){
+            }
+            if(id==0){
+            //send the object to dao
+            ProductDao.insert(pm);
+            }
+            else{
+                ProductDao.update(pm);
+            }
+            response.sendRedirect(contextPath + "/admin/product");
+        }
     }
 
     @Override

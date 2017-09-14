@@ -14,19 +14,20 @@ public class ProductModel implements Serializable {
     // private String product_rating;
     private String product_tag;
     private String product_discount;
-    // private String product_image;
     private int product_price;
+    private String product_image;
 
     public ProductModel() {
 
     }
 
-    public ProductModel(int product_id, String product_name, int product_price, String product_tag, String product_discount) {
+    public ProductModel(int product_id, String product_name, int product_price, String product_tag, String product_discount, String product_image) {
         this.product_id = product_id;
         this.product_name = product_name;
         this.product_price = product_price;
         this.product_tag = product_tag;
         this.product_discount=product_discount;
+        this.product_image=product_image;
     }
 
     public int getProduct_id() {
@@ -69,14 +70,14 @@ public class ProductModel implements Serializable {
     public void setProduct_price(int product_price) {
         this.product_price = product_price;
     }
-//
-//    public String getProduct_image() {
-//        return product_image;
-//    }
-//
-//    public void setProduct_image(String product_image) {
-//        this.product_image = product_image;
-//    }
+
+    public String getProduct_image() {
+        return product_image;
+    }
+
+    public void setProduct_image(String product_image) {
+        this.product_image = product_image;
+    }
 
     
 

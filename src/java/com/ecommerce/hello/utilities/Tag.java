@@ -16,8 +16,10 @@ public class Tag {
     
     for(int i=0;i<tempTag.length;i++){
                tag=tempTag[i]+","+tag;
+//               System.out.println("\b");
+
            }
-    
+//        System.out.println("\b");
     return tag;
     }
     

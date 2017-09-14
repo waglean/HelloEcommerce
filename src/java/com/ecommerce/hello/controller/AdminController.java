@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+//war=Web Application Archive
+//Crud= create read update delete
 @WebServlet({"/admin-dashboard","/admin/product"}) 
 public class AdminController extends HttpServlet {
 

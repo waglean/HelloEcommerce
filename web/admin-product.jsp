@@ -41,33 +41,56 @@
                     <!-- /.box-header -->
                     <!-- form start -->
                     <form role="form" action="${pageContext.request.contextPath}/admin/product/add" method="POST">
+                        <input type="hidden" name="product_id" value="${editproductval.get(0).product_id}">
                         <div class="box-body">
 
                             <div class="form-group">
                                 <label> Product Name</label>
-                                <input type="text" name="product_name" class="form-control" id="exampleInputEmail1" placeholder="Enter Product Name">
+                                <input type="text" name="product_name" value="${editproductval.get(0).product_name}" class="form-control" id="exampleInputEmail1" placeholder="Enter Product Name">
                             </div>
                             <div class="form-group">
                                 <label> Product Price</label>
-                                <input type="text" name="product_price" class="form-control" id="exampleInputEmail1" placeholder="Enter Product Price">
+                                <input type="text" name="product_price" value="${editproductval.get(0).product_price}"  class="form-control" id="exampleInputEmail1" placeholder="Enter Product Price">
                             </div>    
 
                             <div class="form-group">
                                 <label>Product Tags</label>
                                 <select name="product_tag" class="form-control select2" multiple="multiple" data-placeholder="Type a new tag" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                                    <option>Food</option>
-                                    <option>LifeStyle</option>
-                                    <option>Sports</option>
-                                    <option>Electronics</option>
-                                    <option>Health</option>
-                                    <option>Accessories</option>
-                                    <option>Computer and IT gadgets</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label> Product Discount</label>
-                                <input type="text" name="product_discount" class="form-control" id="exampleInputEmail1" placeholder="Enter Product Discount">
+                                    <option
+                                        <c:if test="${editproductval.get(0).product_tag.contains('Food')}">
+                                            selected</c:if>>
+                                            Food</option>
+                                        <option
+                                        <c:if test="${editproductval.get(0).product_tag.contains('LifeStyle')}">
+                                            selected</c:if>>
+                                            LifeStyle</option>
+                                        <option
+                                        <c:if test="${editproductval.get(0).product_tag.contains('Sports')}">selected</c:if>>
+                                            Sports</option>
+                                        <option
+                                        <c:if test="${editproductval.get(0).product_tag.contains('Electronics')}">selected</c:if>>
+                                            Electronics</option>
+                                        <option
+                                        <c:if test="${editproductval.get(0).product_tag.contains('Health')}">selected</c:if>>
+                                            Health</option>
+                                        <option
+                                        <c:if test="${editproductval.get(0).product_tag.contains('Accessories')}">selected</c:if>>
+                                            Accessories</option>
+                                        <option
+                                        <c:if test="${editproductval.get(0).product_tag.contains('Computer and IT gadgets')}">selected</c:if>>
+                                            Computer and IT gadgets</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label> Product Discount</label>
+                                    <input type="text" value="${editproductval.get(0).product_discount}" name="product_discount" class="form-control" id="exampleInputEmail1" placeholder="Enter Product Discount">
                             </div> 
+
+                            <div class="form-group">
+                                <label> Product Image</label>
+                                <input type="text" value="${editproductval.get(0).product_image}" name="product_image" class="form-control" id="exampleInputEmail1" placeholder="Image">
+                            </div> 
+
                             <!--  <div class="checkbox">
                             <label>
                             <input type="checkbox"> Check me out
@@ -77,7 +100,9 @@
                         <!-- /.box-body -->
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-plus-sign">
+                                    Add
                         </div>
                     </form>
                 </div>
@@ -101,6 +126,9 @@
                         <th>Product Price</th>
                         <th>Product Tag</th>
                         <th>Product Discount</th>
+                        <th>Product Image</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -112,6 +140,15 @@
                             <td>${product.product_price}</td>
                             <td>${product.product_tag}</td>
                             <td>${product.product_discount}</td>
+                            <td>${product.product_image}</td> 
+                            <td>
+                                <a href="${pageContext.request.contextPath}/admin/product/edit/?product_id=${product.product_id}">
+                                    <!--//not secure //injection-->
+                                    <span class="glyphicon glyphicon-edit"></span>
+                            </td>
+                            <td>
+                                <a href="${pageContext.request.contextPath}/admin/product/delete/?product_id=${product.product_id}">
+                                    <span class="glyphicon glyphicon-remove"></span></td>
 
                         </tr>
                     </c:forEach>

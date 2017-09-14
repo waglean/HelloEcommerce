@@ -18,41 +18,52 @@ import static org.junit.Assert.*;
  * @author ananda
  */
 public class TagTest {
-    
+
     public TagTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
         System.out.println("i am before class");
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
         System.out.println("i am after class");
     }
-    
+
     @Before
     public void setUp() {
         System.out.println("i am before");
     }
-    
+
     @After
     public void tearDown() {
         System.out.println("i am after");
     }
+
     @Test
-  public void hello(){
+    public void hello() {
         System.out.println("i am real logic");
-  }
-  @Test
-  public void tagTest(){
-      String[] a = new String []{"food"};
-      String expected="food,";
-      assertEquals(expected, Tag.convertTag(a));
-     // System.out.println(Tag.convertTag(a));
-  }
+    }
+
+    @Test
+    public void tagTest() {
+        String[] a = new String[]{"food"};
+        String expected = "food";
+        assertEquals(expected, Tag.convertTag(a));
+        // System.out.println(Tag.convertTag(a));
+    }
+
+    @Test
+    public void idTest() {
+        int expected = 1;
+        assertEquals(expected, 1);
+    }
+
+    @Test
+    public void nameTest() {
+        String expected = "ananda";
+        assertEquals(expected, "ananda");
+    }
 }
-
-
-    

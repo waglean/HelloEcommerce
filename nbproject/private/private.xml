@@ -8,12 +8,10 @@
             <file>file:/home/ananda/NetBeansProjects/Hello/src/java/com/ecommerce/hello/dao/ProductDao.java</file>
             <file>file:/home/ananda/NetBeansProjects/Hello/src/java/com/ecommerce/hello/controller/ProductController.java</file>
             <file>file:/home/ananda/NetBeansProjects/Hello/src/java/com/ecommerce/hello/controller/AdminController.java</file>
-            <file>file:/home/ananda/NetBeansProjects/Hello/web/admin-nav.jsp</file>
             <file>file:/home/ananda/NetBeansProjects/Hello/src/java/com/ecommerce/hello/model/ProductModel.java</file>
             <file>file:/home/ananda/NetBeansProjects/Hello/web/admin-product.jsp</file>
-            <file>file:/home/ananda/NetBeansProjects/Hello/web/admin-footer.jsp</file>
-            <file>file:/home/ananda/NetBeansProjects/Hello/web/admin-header.jsp</file>
             <file>file:/home/ananda/NetBeansProjects/Hello/web/personal-info.jsp</file>
+            <file>file:/home/ananda/NetBeansProjects/Hello/web/META-INF/context.xml</file>
         </group>
     </open-files>
 </project-private>
