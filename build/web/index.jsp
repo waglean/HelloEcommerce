@@ -13,6 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <a href="http://localhost:8080/Hello/admin/product" onmousemove=" " >admin product</a>
         <h1>Hello World! by HTML</h1>
         <h1> <% out.println("Hello world by scriplet, not good practice though."); %> </h1>
         <h1> ${el} </h1> <!-- expression language  -->

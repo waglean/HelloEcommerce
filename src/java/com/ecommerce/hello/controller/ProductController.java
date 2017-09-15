@@ -8,8 +8,9 @@ package com.ecommerce.hello.controller;
 import com.ecommerce.hello.dao.ProductDao;
 import com.ecommerce.hello.model.ProductModel;
 import com.ecommerce.hello.utilities.Tag;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,16 +33,14 @@ public class ProductController extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("product_id"));
             ProductDao.delete(id);
             response.sendRedirect(contextPath + "/admin/product");
+        } else if (request.getRequestURI().equals(contextPath + "/admin/product/edit/")) {
+            int product_id = Integer.parseInt(request.getParameter("product_id"));
+            request.setAttribute("editproductval", ProductDao.selectById(product_id));
+            //response.sendRedirect(contextPath+"/admin/product");
+            RequestDispatcher rd = request.getRequestDispatcher("/admin-product.jsp");
+            rd.forward(request, response);
         }
-        else if (request.getRequestURI().equals(contextPath + "/admin/product/edit/")){
-                    int product_id =Integer.parseInt(request.getParameter("product_id"));
-                    request.setAttribute("editproductval",ProductDao.selectById(product_id));
-                    //response.sendRedirect(contextPath+"/admin/product");
-                    RequestDispatcher rd= request.getRequestDispatcher("/admin-product.jsp");
-                    rd.forward(request,response);
-                    }
-        }
-    
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -49,34 +48,37 @@ public class ProductController extends HttpServlet {
         String contextPath = request.getContextPath();
         if (request.getRequestURI().equals(contextPath + "/admin/product/add")) {
 //          int id=Integer.parseInt(request.getParameter("product_id"));
-            String name = request.getParameter("product_name");
-            int price = Integer.parseInt(request.getParameter("product_price"));
-            String discount = request.getParameter("product_discount");
-            String image = request.getParameter("product_image");
+            String saveLocation = request.getServletContext().getRealPath("/product_image");
+            MultipartRequest mr = new MultipartRequest(request, saveLocation, 1000000, new DefaultFileRenamePolicy());
+            String image= mr.getOriginalFileName("product_image");
+            String name = mr.getParameter("product_name");
+            int price = Integer.parseInt(mr.getParameter("product_price"));
+            String discount = mr.getParameter("product_discount");
+            //String image = request.getParameter("product_image");
+            //MultipartRequest mr= new Multipart   
 
-            String[] tempTag = request.getParameterValues("product_tag");
+            String[] tempTag = mr.getParameterValues("product_tag");
             String tag = Tag.convertTag(tempTag);
 
             //file upload garna baki xa
             //encapsulate the data
             ProductModel pm = new ProductModel();
-           //m.setProduct_id(id);
+            //m.setProduct_id(id);
             pm.setProduct_name(name);
             pm.setProduct_discount(discount);
             pm.setProduct_price(price);
             pm.setProduct_tag(tag);
             pm.setProduct_image(image);
-            int id=0;
-            try{
-                id=Integer.parseInt(request.getParameter("product_id"));
+            int id = 0;
+            try {
+                id = Integer.parseInt(request.getParameter("product_id"));
                 pm.setProduct_id(id);
-            }catch(Exception e){
+            } catch (Exception e) {
             }
-            if(id==0){
-            //send the object to dao
-            ProductDao.insert(pm);
-            }
-            else{
+            if (id == 0) {
+                //send the object to dao
+                ProductDao.insert(pm);
+            } else {
                 ProductDao.update(pm);
             }
             response.sendRedirect(contextPath + "/admin/product");

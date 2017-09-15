@@ -15,11 +15,10 @@ public class Tag {
     String tag="";
     
     for(int i=0;i<tempTag.length;i++){
-               tag=tempTag[i]+","+tag;
-//               System.out.println("\b");
+               tag=tempTag[i]+",  "+tag;
 
            }
-//        System.out.println("\b");
+       System.out.print("\b");
     return tag;
     }
     

@@ -16,12 +16,12 @@
     <section class="content-header">
         <h1>
             Product
-            <small>Product tables</small>
+            <small>Form</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Product</a></li>
-            <li class="active">Product tables</li>
+            <li class="active">Product Form</li>
         </ol>
     </section>
 
@@ -30,17 +30,17 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class="row">
+        <div class="col">
             <!-- left column -->
-            <div class="col-md-6">
+            <div class="row-md-6">
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">ITEMS</h3>
+                        <h2 class="box-title" >Fill Item</h2>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" action="${pageContext.request.contextPath}/admin/product/add" method="POST">
+                    <form role="form" action="${pageContext.request.contextPath}/admin/product/add" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="product_id" value="${editproductval.get(0).product_id}">
                         <div class="box-body">
 
@@ -86,10 +86,12 @@
                                     <input type="text" value="${editproductval.get(0).product_discount}" name="product_discount" class="form-control" id="exampleInputEmail1" placeholder="Enter Product Discount">
                             </div> 
 
+
+
                             <div class="form-group">
-                                <label> Product Image</label>
-                                <input type="text" value="${editproductval.get(0).product_image}" name="product_image" class="form-control" id="exampleInputEmail1" placeholder="Image">
-                            </div> 
+                                <label for="exampleInputFile">Upload Product Image</label>
+                                <input type="file" value="${editproductval.get(0).product_image}" name="product_image" id="exampleInputFile">
+                            </div>
 
                             <!--  <div class="checkbox">
                             <label>
@@ -100,9 +102,9 @@
                         <!-- /.box-body -->
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">
-                                <span class="glyphicon glyphicon-plus-sign">
-                                    Add
+                            <button type="submit" class="btn btn-primary"/>
+                            <span class="glyphicon glyphicon-plus-sign"/>
+                            Add
                         </div>
                     </form>
                 </div>
@@ -111,63 +113,87 @@
         </div>
     </section>
 
+    <!--                                
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Product
+            <small>Table</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Product</a></li>
+            <li class="active">Product Table</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="">
+            <!-- left column -->
+            <div class="col">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h2 class="box-title" >Item Display</h2>
+                    </div>
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Product ID</th>
+                                <th>Product Name</th>
+                                <th>Product Price</th>
+                                <th>Product Tag</th>
+                                <th>Product Discount</th>
+                                <th>Product Image</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-    <div class="box">
-        <div class="box-header">
-            <h3 class="box-title">Product Table</h3>
+                            <c:forEach items="${productvalues}" var="product">
+                                <tr>
+                                    <td>${product.product_id}</td>
+                                    <td>${product.product_name}</td>
+                                    <td>${product.product_price}</td>
+                                    <td>${product.product_tag}</td>
+                                    <td>${product.product_discount}</td>
+
+                                    <td>
+                                        <a href="${pageContext.request.contextPath}/product_image/${product.product_image}" target="_blank"/>
+                                        <img height="30" width="30" src="${pageContext.request.contextPath}/product_image/${product.product_image}" alt="img"/></td> 
+                                    <td>
+                                        <a href="${pageContext.request.contextPath}/admin/product/edit/?product_id=${product.product_id}">
+                                            <!--//not secure //injection-->
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                    </td>
+                                    <td>
+                                        <a href="${pageContext.request.contextPath}/admin/product/delete/?product_id=${product.product_id}">
+                                            <span class="glyphicon glyphicon-remove"></span></td>
+
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-        <!-- /.box-header -->
-        <div class="box-body">
-            <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>Product ID</th>
-                        <th>Product Name</th>
-                        <th>Product Price</th>
-                        <th>Product Tag</th>
-                        <th>Product Discount</th>
-                        <th>Product Image</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    <c:forEach items="${productvalues}" var="product">
-                        <tr>
-                            <td>${product.product_id}</td>
-                            <td>${product.product_name}</td>
-                            <td>${product.product_price}</td>
-                            <td>${product.product_tag}</td>
-                            <td>${product.product_discount}</td>
-                            <td>${product.product_image}</td> 
-                            <td>
-                                <a href="${pageContext.request.contextPath}/admin/product/edit/?product_id=${product.product_id}">
-                                    <!--//not secure //injection-->
-                                    <span class="glyphicon glyphicon-edit"></span>
-                            </td>
-                            <td>
-                                <a href="${pageContext.request.contextPath}/admin/product/delete/?product_id=${product.product_id}">
-                                    <span class="glyphicon glyphicon-remove"></span></td>
-
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
-        </div>
-    </div>
+    </section>
 </div>
+
+
+
 
 <jsp:include page="admin-footer.jsp"/>
 
 <script>
-//                $('#example1').DataTable({
-//                "paging": true,
-//                "lengthChange": false,
-//                "searching": true,
-//                "ordering": true,
-//                "info": true,
-//                "autoWidth": false
-//                });
+    //                $('#example1').DataTable({
+    //                "paging": true,
+    //                "lengthChange": false,
+    //                "searching": true,
+    //                "ordering": true,
+    //                "info": true,
+    //                "autoWidth": false
+    //                });
     $('#example1').DataTable();
 </script>
